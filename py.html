@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pythonのプログラム</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+</head>
+<body>
+    <h1 id="box">Python用Webページ</h1>
+    <div id="fox"></div>
+    <script type="py">
+        import random
+        from pyscript import document
+
+        fox = document.querySelector("#fox")
+        def r(event):
+            a = random.randrange(1, 10, 2)
+            fox.innerText = a
+
+        document.querySelector("#box").onclick = r
+    </script>
+</body>
+</html>
