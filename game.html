@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pythonゲーム</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+</head>
+<body>
+    <h1>モンスターバトル</h1>
+    <button id="btn">こうげき</button>
+    <div id="fox"></div>
+    <script type="py">
+        import random
+        from pyscript import document
+
+        class Player:
+            def __init__(self, name, hp):
+                self.name = name
+                self.hp = hp
+
+            def attack(self, target_hp):
+                damage = random.randint(1, 20)
+                new_hp = target_hp - damage
+                return damage, max(0, new_hp)
+
+        player = Player("勇者", 100)
+        monster_hp = 50
+
+        def on_click_attack(event):
+            global monster_hp
+            damage, monster_hp = player.attack(monster_hp)
+
+            fox = document.querySelector("#fox")
+            if monster_hp > 0:
+                fox.innerHTML += f"{damage}のダメージ！　残りHP：{monster_hp}<br>"
+            else:
+                fox.innerHTML += "モンスターを倒した！"
+
+        document.querySelector("#btn").onclick = on_click_attack
+    
+    </script>
+</body>
+</html>
